@@ -45,5 +45,7 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSLocalNotificationsUsageDescription</key>
+	<string>通知を送信するためにアプリが通知の許可を必要としています。</string>
 </dict>
 </plist>
