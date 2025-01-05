@@ -69,7 +69,7 @@ class _NotificationSheetState extends State<NotificationSheet> {
             onPressed: () async {
               try {
                 await NotificationService().scheduleNotification(_selectedTime);
-                if (mounted) {
+                if (context.mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text('通知を設定しました'),
@@ -79,7 +79,7 @@ class _NotificationSheetState extends State<NotificationSheet> {
                   Navigator.pop(context);
                 }
               } catch (e) {
-                if (mounted) {
+                if (context.mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text('通知の設定に失敗しました: $e'),
@@ -96,14 +96,16 @@ class _NotificationSheetState extends State<NotificationSheet> {
           TextButton(
             onPressed: () async {
               await NotificationService().cancelAllNotifications();
-              if (mounted) {
+              if (context.mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text('通知をキャンセルしました'),
                     behavior: SnackBarBehavior.floating,
                   ),
                 );
-                Navigator.pop(context);
+                if (context.mounted) {
+                  Navigator.pop(context);
+                }
               }
             },
             child: const Text(

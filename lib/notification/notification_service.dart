@@ -3,6 +3,17 @@ import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tzdata;
 import 'package:flutter/material.dart';
 
+/// ローカル通知を管理するサービスクラス
+/// 
+/// シングルトンパターンを採用し、アプリケーション全体で単一のインスタンスを共有します。
+/// これにより、通知の重複や競合を防ぎ、一貫した通知管理を実現します。
+/// 
+/// 使用例:
+/// ```dart
+/// final notificationService = NotificationService();
+/// await notificationService.initialize();
+/// await notificationService.scheduleNotification(DateTime.now());
+/// ```
 class NotificationService {
   static final NotificationService _instance = NotificationService._();
   factory NotificationService() => _instance;
